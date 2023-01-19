@@ -1,0 +1,18 @@
+{
+  "clientes": [
+    {
+      "nombre": "Ander",
+      "apellidos": "Lizarralde",
+      "telefono": "654321987",
+      "email": "ander@example.com",
+      "id": 1
+    },
+    {
+      "nombre": "Pepe",
+      "apellidos": "Pérez",
+      "telefono": "987654322",
+      "email": "pepe@example.com",
+      "id": 2
+    }
+  ]
+}
