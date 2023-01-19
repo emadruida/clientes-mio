@@ -19,10 +19,20 @@ export class ClientesComponent implements OnInit {
   }
 
   borrar(id: number): void {
-    this.clienteService
-      .deleteCliente(id)
-      .subscribe(
-        () => (this.clientes = this.clientes.filter((c) => id !== c.id))
-      );
+    const opcion = confirm(
+      `¿Seguro que quieres borrar a '${this.describeCliente(id)}'?`
+    );
+    if (opcion) {
+      this.clienteService
+        .deleteCliente(id)
+        .subscribe(
+          () => (this.clientes = this.clientes.filter((c) => id !== c.id))
+        );
+    }
+  }
+
+  private describeCliente(id: number): string {
+    const cliente = this.clientes.find((c) => c.id === id)!;
+    return `${cliente.nombre} ${cliente.apellidos} (id=${cliente.id})`;
   }
 }
