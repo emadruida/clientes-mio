@@ -1,10 +1,8 @@
 <div *ngIf="cliente">
-  <h2>Modificación del cliente</h2>
-
   <fieldset>
-      <legend>{{cliente.nombre}} {{cliente.apellidos}}</legend>
+      <legend>{{titulo}}</legend>
 
-      <div>
+      <div *ngIf="cliente.id">
           <label for="id">Id</label>
           <input type="number" readonly id="id" [(ngModel)]="cliente.id">
       </div>

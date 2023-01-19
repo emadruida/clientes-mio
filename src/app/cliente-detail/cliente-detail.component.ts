@@ -1,5 +1,4 @@
 import { Location } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Cliente } from '../cliente';
@@ -11,6 +10,7 @@ import { ClienteService } from '../cliente.service';
   styleUrls: ['./cliente-detail.component.css'],
 })
 export class ClienteDetailComponent implements OnInit {
+  titulo?: string;
   cliente?: Cliente;
 
   constructor(
@@ -25,9 +25,15 @@ export class ClienteDetailComponent implements OnInit {
 
   getCliente(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.clienteService
-      .getCliente(id)
-      .subscribe((cliente) => (this.cliente = cliente));
+    if (id) {
+      this.titulo = "Modificación del cliente";
+      this.clienteService
+        .getCliente(id)
+        .subscribe((cliente) => (this.cliente = cliente));
+    } else {
+      this.titulo = "Nuevo cliente";
+      this.cliente = {} as Cliente;
+    }
   }
 
   goBack() {
@@ -36,9 +42,15 @@ export class ClienteDetailComponent implements OnInit {
 
   guardarCliente(): void {
     if (this.cliente) {
-      this.clienteService
-        .updateCliente(this.cliente)
-        .subscribe(() => this.goBack());
+      if (this.cliente.id) {
+        this.clienteService
+          .updateCliente(this.cliente)
+          .subscribe(() => this.goBack());
+      } else {
+        this.clienteService
+          .addCliente(this.cliente)
+          .subscribe(() => this.goBack());
+      }
     }
   }
 }

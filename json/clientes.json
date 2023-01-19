@@ -13,6 +13,13 @@
       "telefono": "987654322",
       "email": "pepe@example.com",
       "id": 2
+    },
+    {
+      "nombre": "Nuevo",
+      "apellidos": "Cliente Uno",
+      "telefono": "987123456",
+      "email": "cliente.uno@nuevo.com",
+      "id": 3
     }
   ]
 }
